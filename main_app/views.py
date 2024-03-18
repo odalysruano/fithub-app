@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -23,6 +24,18 @@ def routines_detail(request, routine_id):
     return render(request, 'routines/detail.html', { 
         'routine': routine 
         })
+
+class RoutineCreate(CreateView):
+    model = Routine
+    fields = '__all__'
+
+class RoutineUpdate(UpdateView):
+    model = Routine
+    fields = ['focus_area', 'time_goal', 'calorie_goal']
+
+class RoutineDelete(DeleteView):
+    model = Routine
+    success_url = '/routines'    
 
 def signup(request):
     error_message = ''
