@@ -3,6 +3,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Routine
 
@@ -13,27 +15,35 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
 def routines_index(request):
     routines = Routine.objects.filter(user=request.user)
     return render(request, 'routines/index.html', {
         'routines': routines
     })
 
+@login_required
 def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
     return render(request, 'routines/detail.html', { 
         'routine': routine 
         })
 
-class RoutineCreate(CreateView):
+class RoutineCreate(LoginRequiredMixin, CreateView):
     model = Routine
-    fields = '__all__'
+    fields = ['day_of_the_week', 'focus_area', 'time_goal', 'calorie_goal']
 
-class RoutineUpdate(UpdateView):
+    def form_valid(self, form):
+        # Assign the logged in user (self.request.user)
+        form.instance.user = self.request.user
+        # Let the CreateView do its job as usual
+        return super().form_valid(form)
+
+class RoutineUpdate(LoginRequiredMixin, UpdateView):
     model = Routine
     fields = ['focus_area', 'time_goal', 'calorie_goal']
 
-class RoutineDelete(DeleteView):
+class RoutineDelete(LoginRequiredMixin, DeleteView):
     model = Routine
     success_url = '/routines'    
 
