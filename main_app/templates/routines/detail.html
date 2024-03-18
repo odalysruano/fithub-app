@@ -3,17 +3,38 @@
 
 <h1>Routine Details</h1>
 
-<div class="card">
-    <div class="card-content">
-        <span class="card-title">{{ routine.day_of_the_week }}</span>
-        <p>Focus Area: {{ routine.focus_area }}</p>
-        <p>Time Goal: {{ routine.time_goal }}</p>
-        <p>Calorie Goal: {{ routine.calorie_goal }}</p>
+<div class="row"></div>
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ routine.day_of_the_week }}</span>
+            <p>Focus Area: {{ routine.focus_area }}</p>
+            <p>Time Goal: {{ routine.time_goal }}</p>
+            <p>Calorie Goal: {{ routine.calorie_goal }}</p>
+        </div>
+        <div class="card-action">
+            <a href="{% url 'routines_update' routine.id %}">Edit</a>
+            <a href="{% url 'routines_delete' routine.id %}">Delete</a>
+        </div>    
     </div>
-    <div class="card-action">
-        <a href="{% url 'routines_update' routine.id %}">Edit</a>
-        <a href="{% url 'routines_delete' routine.id %}">Delete</a>
-    </div>    
+</div>
+
+<div class="row">
+    <table class="striped centered">
+        <thead>
+            <tr><th>Date</th><th>Exercise</th><th>Sets</th><th>Reps</th><th>Weight</th></tr>
+        </thead>
+        <tbody>
+            {% for exercise in routine.exercise_set.all %}
+                <tr>
+                    <td>{{exercise.date}}</td>
+                    <td>{{exercise.get_name_display}}</td>
+                    <td>{{exercise.sets}}</td>
+                    <td>{{exercise.reps}}</td>
+                    <td>{{exercise.weight}}</td>
+                </tr>
+            {% endfor %}    
+        </tbody>
+    </table>
 </div>
 
 {% endblock %}
