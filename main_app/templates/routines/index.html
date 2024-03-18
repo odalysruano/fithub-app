@@ -5,12 +5,14 @@
 
 {% for routine in routines %}
     <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ routine.day_of_the_week }}</span>
-            <p>Focus Area: {{ routine.focus_area }}</p>
-            <p>Time Goal: {{ routine.time_goal }}</p>
-            <p>Calorie Goal: {{ routine.calorie_goal }}</p>
-        </div>
+        <a href="{% url 'detail' routine.id %}">
+            <div class="card-content">
+                <span class="card-title">{{ routine.day_of_the_week }}</span>
+                <p>Focus Area: {{ routine.focus_area }}</p>
+                <p>Time Goal: {{ routine.time_goal }}</p>
+                <p>Calorie Goal: {{ routine.calorie_goal }}</p>
+            </div>
+        </a>    
     </div>
 {% endfor %}
 

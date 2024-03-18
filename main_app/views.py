@@ -18,6 +18,12 @@ def routines_index(request):
         'routines': routines
     })
 
+def routines_detail(request, routine_id):
+    routine = Routine.objects.get(id=routine_id)
+    return render(request, 'routines/detail.html', { 
+        'routine': routine 
+        })
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
