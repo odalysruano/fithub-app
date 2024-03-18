@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>My Routines</h1>
+
+{% for routine in routines %}
+    <div class="card">
+        <div class="card-content">
+            <span class="card-title">{{ routine.day_of_the_week }}</span>
+            <p>Focus Area: {{ routine.focus_area }}</p>
+            <p>Goal(Time): {{ routine.time_goal }}</p>
+            <p>Goal(Calories): {{ routine.calories_goal }}</p>
+        </div>
+    </div>
+{% endfor %}
+
+{% endblock %}
