@@ -4,9 +4,9 @@
 <h1>My Routines</h1>
 
 {% for routine in routines %}
-    <div class="card">
+    <div class="card yellow lighten-4">
         <a href="{% url 'detail' routine.id %}">
-            <div class="card-content">
+            <div class="card-content black-text">
                 <span class="card-title">{{ routine.day_of_the_week }}</span>
                 <p>Focus Area: {{ routine.focus_area }}</p>
                 <p>Time Goal: {{ routine.time_goal }}</p>

@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Equipment List</h1>
+<h1>My Equipment List</h1>
 
 {% for equipment in equipment_list %}
     <a href="{% url 'equipments_detail' equipment.id %}">
-        <div class="card">
-            <div class="card-content">
+        <div class="card red accent-1">
+            <div class="card-content black-text">
                 <span class="card-title">{{ equipment.name }}</span>
             </div>
         </div>

@@ -7,24 +7,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>FitHub</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type=text/javascript>
+        $( document ).ready(function(){
+            $(".dropdown-trigger").dropdown();
+        });
+    </script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </head>
 <body>
     <header class="navbar-fixed">
         <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper orange accent-4">
             <ul>
-                <li><a href="/" class="left brand-logo">&nbsp;&nbsp;FitHub</a></li>
+                <li><a href="/" class="center brand-logo">&nbsp;&nbsp;FitHub</a></li>
             </ul>
-            <ul class="right">
-                <li><a href="{% url 'about' %}">About</a></li>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="{% url 'about' %}" class="btn teal darken-1">About</a></li>
                 {% if user.is_authenticated %}
-                    <li><a href="{% url 'equipments_create' %}">Add Equipment</a></li>
-                    <li><a href="{% url 'equipments_index' %}">View All Equipment</a></li>
-                    <li><a href="{% url 'routines_create' %}">Add a Routine</a></li>
-                    <li><a href="{% url 'index' %}">View All My Routines</a></li>
+                    <li>
+                        <a class="dropdown-trigger btn red accent-1" data-target="dropdown1">Equipment<i class="material-icons right">arrow_drop_down</i></a>
+                        <ul id="dropdown1" class="dropdown-content">
+                            <li><a href="{% url 'equipments_create' %}">Add Equipment</a></li>
+                            <li><a href="{% url 'equipments_index' %}">View All Equipment</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown-trigger btn yellow darken-3" data-target="dropdown2">Routines<i class="material-icons right">arrow_drop_down</i></a>
+                        <ul id="dropdown2" class="dropdown-content">
+                            <li><a href="{% url 'routines_create' %}">Add a Routine</a></li>
+                            <li><a href="{% url 'index' %}">View All My Routines</a></li>
+                        </ul>
+                    </li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
                     <li><a href="{% url 'signup' %}">Sign Up</a></li>
@@ -38,7 +55,7 @@
         {% block content %}
         {% endblock %}
     </main>
-    <footer class="page-footer">
+    <footer class="page-footer orange accent-4">
         <div class="right">All Rights Reserved, &copy; 2024 FitHub &nbsp;</div>
     </footer>
 </body>
