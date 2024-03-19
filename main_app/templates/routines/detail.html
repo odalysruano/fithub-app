@@ -19,6 +19,13 @@
 </div>
 
 <div class="row">
+    <div class="col s6">
+        <form action="{% url 'add_exercise' routine.id %}" method="POST">
+            {% csrf_token %}
+            {{ exercise_form.as_p }}
+            <input type="submit" class="btn" value="Add Exercise">
+        </form>
+    </div>
     <table class="striped centered">
         <thead>
             <tr><th>Date</th><th>Exercise</th><th>Sets</th><th>Reps</th><th>Weight</th></tr>
@@ -36,5 +43,19 @@
         </tbody>
     </table>
 </div>
+
+<script>
+    const dateEl = document.getElementById('id_date');
+    // M is Materialize's global variable
+    M.Datepicker.init(dateEl, {
+        format: 'yyyy-mm-dd',
+        defaultDate: new Date(),
+        setDefaultDate: true,
+        autoClose: true
+    });
+
+    const selectEl = document.getElementById('id_name');
+    M.FormSelect.init(selectEl);
+</script>
 
 {% endblock %}

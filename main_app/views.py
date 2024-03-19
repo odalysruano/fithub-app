@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Routine
+from .forms import ExerciseForm
 
 # Create your views here.
 def home(request):
@@ -25,8 +26,10 @@ def routines_index(request):
 @login_required
 def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
+    exercise_form = ExerciseForm()
     return render(request, 'routines/detail.html', { 
-        'routine': routine 
+        'routine': routine,
+        'exercise_form': exercise_form, 
         })
 
 class RoutineCreate(LoginRequiredMixin, CreateView):
@@ -46,6 +49,15 @@ class RoutineUpdate(LoginRequiredMixin, UpdateView):
 class RoutineDelete(LoginRequiredMixin, DeleteView):
     model = Routine
     success_url = '/routines'    
+
+@login_required
+def add_exercise(request, routine_id):
+    form = ExerciseForm(request.POST)
+    if form.is_valid():
+        new_exercise = form.save(commit=False)
+        new_exercise.routine_id = routine_id
+        new_exercise.save()
+    return redirect('detail', routine_id=routine_id)
 
 def signup(request):
     error_message = ''
