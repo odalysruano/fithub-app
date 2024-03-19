@@ -3,18 +3,42 @@
 
 <h1>Routine Details</h1>
 
-<div class="row"></div>
-    <div class="card">
-        <div class="card-content">
-            <span class="card-title">{{ routine.day_of_the_week }}</span>
-            <p>Focus Area: {{ routine.focus_area }}</p>
-            <p>Time Goal: {{ routine.time_goal }}</p>
-            <p>Calorie Goal: {{ routine.calorie_goal }}</p>
+<div class="row">
+    <div class="col s6">
+        <div class="card">
+            <div class="card-content">
+                <span class="card-title">{{ routine.day_of_the_week }}</span>
+                <p>Focus Area: {{ routine.focus_area }}</p>
+                <p>Time Goal: {{ routine.time_goal }}</p>
+                <p>Calorie Goal: {{ routine.calorie_goal }}</p>
+            </div>
+            <div class="card-action">
+                <a href="{% url 'routines_update' routine.id %}">Edit</a>
+                <a href="{% url 'routines_delete' routine.id %}">Delete</a>
+            </div>    
         </div>
-        <div class="card-action">
-            <a href="{% url 'routines_update' routine.id %}">Edit</a>
-            <a href="{% url 'routines_delete' routine.id %}">Delete</a>
-        </div>    
+    </div>
+    <div class="col s6">
+        <h4 style="text-align:center">Equipment Needed for Routine</h4>
+        {% if routine.equipment.count %}
+            {% for equipment in routine.equipment.all %}
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            <span>{{ equipment.weight }} lb</span> {{ equipment.name }}
+                        </span>
+                    </div>
+                    <!-- <div class="card-action">
+                        <form action="{% url 'unassoc_toy' cat.id toy.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Remove</button>
+                        </form>
+                    </div> -->
+                </div>
+            {% endfor %}
+        {% else %}
+            <h6 style="text-align:center">No Equipment</h6>
+        {% endif %}
     </div>
 </div>
 
@@ -26,6 +50,32 @@
             <input type="submit" class="btn" value="Add Exercise">
         </form>
     </div>
+    <div class="col s6">
+        <h4 style="text-align:center">Available Equipment</h4>
+        {% if equipment.count %}
+            {% for equipment in equipment.all %}
+                <div class="card">
+                    <div class="card-content">
+                        <span class="card-title">
+                            <span>{{ equipment.weight }} lb</span> {{ equipment.name }}
+                        </span>
+                    </div>
+                    <!-- <div class="card-action">
+                        <form action="{% url 'assoc_toy' cat.id toy.id %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit" class="btn">Add</button>
+                        </form>
+                    </div> -->
+                </div>
+            {% endfor %}
+        {% else %}
+            <h6 style="text-align:center">{{routine.name}} Already Has All Equipment Available</h6>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row">
+    <h3 style="text-align:center">Exercise Records</h3>
     <table class="striped centered">
         <thead>
             <tr><th>Date</th><th>Exercise</th><th>Sets</th><th>Reps</th><th>Weight</th></tr>

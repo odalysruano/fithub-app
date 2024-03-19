@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Routine
+from .models import Routine, Equipment
 from .forms import ExerciseForm
 
 # Create your views here.
@@ -58,6 +59,24 @@ def add_exercise(request, routine_id):
         new_exercise.routine_id = routine_id
         new_exercise.save()
     return redirect('detail', routine_id=routine_id)
+
+class EquipmentList(LoginRequiredMixin, ListView):
+    model = Equipment
+
+class EquipmentDetail(LoginRequiredMixin, DetailView):
+    model = Equipment
+
+class EquipmentCreate(LoginRequiredMixin, CreateView):
+    model = Equipment
+    fields = '__all__'
+
+class EquipmentUpdate(LoginRequiredMixin, UpdateView):
+    model = Equipment
+    fields = ['name', 'weight']
+
+class EquipmentDelete(LoginRequiredMixin, DeleteView):
+    model = Equipment
+    success_url = '/equipment'
 
 def signup(request):
     error_message = ''

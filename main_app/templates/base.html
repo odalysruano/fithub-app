@@ -21,6 +21,8 @@
             <ul class="right">
                 <li><a href="{% url 'about' %}">About</a></li>
                 {% if user.is_authenticated %}
+                    <li><a href="{% url 'equipment_create' %}">Add Equipment</a></li>
+                    <li><a href="{% url 'equipment_index' %}">View All Equipment</a></li>
                     <li><a href="{% url 'routines_create' %}">Add a Routine</a></li>
                     <li><a href="{% url 'index' %}">View All My Routines</a></li>
                     <li><a href="{% url 'logout' %}">Log Out</a></li>
