@@ -25,13 +25,15 @@ class Equipment(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return reverse('equipment_detail', kwargs={'pk': self.id})
+        return reverse('equipments_detail', kwargs={'pk': self.id})
 
 class Routine(models.Model):
     day_of_the_week = models.CharField(max_length=50)
     focus_area = models.CharField(max_length=50)
     time_goal = models.IntegerField()
     calorie_goal = models.IntegerField()
+
+    equipments = models.ManyToManyField(Equipment)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 

@@ -27,11 +27,14 @@ def routines_index(request):
 @login_required
 def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
+    id_list = routine.equipments.all().values_list('id')
+    equipments_routine_doesnt_have = Equipment.objects.exclude(id__in=id_list)
     exercise_form = ExerciseForm()
     return render(request, 'routines/detail.html', { 
         'routine': routine,
-        'exercise_form': exercise_form, 
-        })
+        'exercise_form': exercise_form,
+        'equipments': equipments_routine_doesnt_have,
+    })
 
 class RoutineCreate(LoginRequiredMixin, CreateView):
     model = Routine
@@ -76,7 +79,17 @@ class EquipmentUpdate(LoginRequiredMixin, UpdateView):
 
 class EquipmentDelete(LoginRequiredMixin, DeleteView):
     model = Equipment
-    success_url = '/equipment'
+    success_url = '/equipments'
+
+@login_required
+def assoc_equipment(request, routine_id, equipment_id):
+    Routine.objects.get(id=routine_id).equipments.add(equipment_id)
+    return redirect('detail', routine_id=routine_id)
+
+@login_required
+def unassoc_equipment(request, routine_id, equipment_id):
+    Routine.objects.get(id=routine_id).equipments.remove(equipment_id)
+    return redirect('detail', routine_id=routine_id)
 
 def signup(request):
     error_message = ''
