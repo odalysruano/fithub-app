@@ -16,6 +16,14 @@ EXERCISES = (
     ('K', 'Walking'),
 )
 
+FOCUS = (
+    ('1', 'Upper Body'),
+    ('2', 'Lower Body'),
+    ('3', 'Core'),
+    ('4', 'Cardio'),
+    ('5', 'Flexibility'),
+)
+
 # Create your models here.
 class Equipment(models.Model):
     name = models.CharField(max_length=100)
@@ -29,7 +37,11 @@ class Equipment(models.Model):
 
 class Routine(models.Model):
     day_of_the_week = models.CharField(max_length=50)
-    focus_area = models.CharField(max_length=50)
+    focus_area = models.CharField(
+        max_length=1,
+        choices=FOCUS,
+        default=FOCUS[0][0]
+    )
     time_goal = models.IntegerField()
     calorie_goal = models.IntegerField()
 
@@ -38,7 +50,7 @@ class Routine(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.day_of_the_week
+        return self.focus_area
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'routine_id': self.id})
