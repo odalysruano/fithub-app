@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 style="font-weight:bold">My Routines</h1>
+<div class="row valign-wrapper">
+    <div class="col s6">
+        <h1 style="font-weight:bold">My Routines</h1>
+    </div>
+    <div class="col s6">
+        <a href="{% url 'routines_create' %}" class="btn blue darken-1 right">Add a Routine</a>
+    </div>
+</div>
 
 {% for routine in routines %}
     <div class="card yellow lighten-4">
