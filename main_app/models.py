@@ -2,18 +2,69 @@ from django.db import models
 from django.urls import reverse
 from django.contrib.auth.models import User
 
-EXERCISES = (
+UPPER_EX = (
     ('A', 'Push-Ups'),
-    ('B', 'Plank'),
-    ('C', 'Squats'),
-    ('D', 'Burpees'),
-    ('E', 'Lunges'),
-    ('F', 'Jumping Jacks'),
-    ('G', 'Mountain Climbers'),
-    ('H', 'Yoga'),
-    ('I', 'Pilates'),
-    ('J', 'Running'),
-    ('K', 'Walking'),
+    ('B', 'Pull-Ups'),
+    ('C', 'Bench Press'),
+    ('D', 'Overhead Press'),
+    ('E', 'Biceps Curl'),
+    ('F', 'Dumbbell Curl'),
+    ('G', 'Dumbbell Row'),
+    ('H', 'Tricep Dips'),
+    ('I', 'Lat Pulldown'),
+    ('J', 'Deadlifts'),
+    ('K', 'Yoga'),
+    ('L', 'Pilates'),
+    ('M', 'Boxing'),
+)
+
+LOWER_EX = (
+    ('A', 'Squats'),
+    ('B', 'Deadlifts'),
+    ('C', 'Lunges'),
+    ('D', 'Reverse Lunge'),
+    ('E', 'Curtsy Lunge'),
+    ('F', 'Donkey Kicks'),
+    ('G', 'Step-Ups'),
+    ('H', 'Glute Bridge'),
+    ('I', 'Yoga'),
+    ('J', 'Pilates'),
+    ('K', 'Running'),
+    ('L', 'Walking'),
+    ('M', 'Boxing'),
+)
+
+CORE_EX = (
+    ('A', 'Planks'),
+    ('B', 'Crunches'),
+    ('C', 'Bridge'),
+    ('D', 'Russian Twist'),
+    ('E', 'Superman'),
+    ('F', 'Sit-Ups'),
+    ('G', 'Leg Raise'),
+    ('H', 'Mountain Climbers'),
+    ('I', 'Yoga'),
+    ('J', 'Pilates'),
+    ('K', 'Boxing'),
+)
+
+CARDIO_EX = (
+    ('A', 'Running'),
+    ('B', 'Dancing'),
+    ('C', 'Jumping Jacks'),
+    ('D', 'Jump Rope'),
+    ('E', 'Burpees'),
+    ('F', 'Cycling'),
+    ('G', 'Swimming'),
+    ('H', 'HIIT Workout'),
+    ('I', 'Boxing'),
+)
+
+FLEX_EX = (
+    ('A', 'Yoga'),
+    ('B', 'Pilates'),
+    ('C', 'Walking'),
+    ('D', 'Stretching'),
 )
 
 FOCUS = (
@@ -50,7 +101,7 @@ class Routine(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.focus_area
+        return self.get_focus_area_display()
     
     def get_absolute_url(self):
         return reverse('detail', kwargs={'routine_id': self.id})
@@ -59,8 +110,7 @@ class Exercise(models.Model):
     date = models.DateField('Exercise Date')
     name = models.CharField(
         max_length=1,
-        choices=EXERCISES,
-        default=EXERCISES[0][0]
+        choices=UPPER_EX + LOWER_EX + CORE_EX + CARDIO_EX + FLEX_EX,
     )
     sets = models.IntegerField(null=True, blank=True)
     reps = models.IntegerField(null=True, blank=True)

@@ -8,7 +8,7 @@
         <a href="{% url 'detail' routine.id %}">
             <div class="card-content black-text">
                 <span class="card-title">{{ routine.day_of_the_week }}</span>
-                <p>Focus Area: {{ routine.focus_area }}</p>
+                <p>Focus Area: {{ routine.get_focus_area_display }}</p>
                 <p>Time Goal: {{ routine.time_goal }}</p>
                 <p>Calorie Goal: {{ routine.calorie_goal }}</p>
             </div>

@@ -29,7 +29,7 @@ def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
     id_list = routine.equipments.all().values_list('id')
     equipments_routine_doesnt_have = Equipment.objects.exclude(id__in=id_list)
-    exercise_form = ExerciseForm()
+    exercise_form = ExerciseForm(focus_area=routine.focus_area)
     return render(request, 'routines/detail.html', { 
         'routine': routine,
         'exercise_form': exercise_form,
