@@ -7,7 +7,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from .models import Routine, Equipment
+from .models import Routine, Exercise, Equipment
 from .forms import ExerciseForm
 
 # Create your views here.
@@ -62,6 +62,12 @@ def add_exercise(request, routine_id):
         new_exercise.routine_id = routine_id
         new_exercise.save()
     return redirect('detail', routine_id=routine_id)
+
+@login_required
+def delete_exercise(request, routine_id, exercise_id):
+    exercise = Exercise.objects.get(id=exercise_id)
+    exercise.delete()
+    return routines_detail(request, routine_id)
 
 class EquipmentList(LoginRequiredMixin, ListView):
     model = Equipment
