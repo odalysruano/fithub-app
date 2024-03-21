@@ -1,8 +1,8 @@
 from django.forms import ModelForm, ChoiceField
-from .models import Exercise, UPPER_EX, LOWER_EX, CORE_EX, CARDIO_EX, FLEX_EX
+from .models import Exercise, EXERCISES, UPPER_EX, LOWER_EX, CORE_EX, CARDIO_EX, FLEX_EX
 
 class ExerciseForm(ModelForm):
-    name = ChoiceField(choices=UPPER_EX + LOWER_EX + CORE_EX + CARDIO_EX + FLEX_EX)
+    name = ChoiceField(choices=EXERCISES)
     
     class Meta:
         model = Exercise
