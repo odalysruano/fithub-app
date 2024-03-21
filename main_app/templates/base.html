@@ -22,6 +22,13 @@
     <header class="navbar-fixed">
         <nav>
         <div class="nav-wrapper orange accent-4">
+            {% if user.is_authenticated %}
+                <ul>
+                    <li>
+                        <a class="btn orange accent-4" href="{% url 'index' %}">Welcome back, {{ user.username }}!</a>
+                    </li>
+                </ul>
+            {% endif %}     
             <a href="/" class="brand-logo center">
                 <img style="height:64px;" src="{% static 'images/fithub.png' %}">
             </a>
