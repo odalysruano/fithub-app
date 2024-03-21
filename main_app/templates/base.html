@@ -22,9 +22,9 @@
     <header class="navbar-fixed">
         <nav>
         <div class="nav-wrapper orange accent-4">
-            <ul>
-                <li><a href="/" class="center brand-logo"><img class="responsive-img" src="../static/images/fit-hub-logo.png"></a></li>
-            </ul>
+            <a href="/" class="brand-logo center">
+                <img style="height:64px;" src="../static/images/fithub.png">
+            </a>
             <ul class="right hide-on-med-and-down">
                 <li><a href="{% url 'about' %}" class="btn teal darken-1">About</a></li>
                 {% if user.is_authenticated %}
