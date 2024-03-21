@@ -1,12 +1,11 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>Routine Details</h1>
-
 <div class="row">
     <div class="col s6">
+        <h1 style="font-weight:bold">Routine Details</h1>
         <div class="card yellow lighten-4">
-            <div class="card-content black-text">
+            <div class="card-content black-text" style="height:200px">
                 <span class="card-title">{{ routine.day_of_the_week }}</span>
                 <p>Focus Area: {{ routine.get_focus_area_display }}</p>
                 <p>Time Goal: {{ routine.time_goal }}</p>
@@ -19,17 +18,17 @@
         </div>
     </div>
     <div class="col s6">
-        <h4 style="text-align:center">Equipment Needed for Routine</h4>
+        <h4 style="text-align:center; margin-top:100px;">Equipment Needed for Routine</h4>
         {% if routine.equipments.count %}
             {% for equipment in routine.equipments.all %}
-                <div class="card red accent-1">
+                <div class="card yellow darken-3">
                     <div class="card-content">
                         <span class="card-title">{{ equipment.name }}</span>
                     </div>
                     <div class="card-action">
                         <form action="{% url 'unassoc_equipment' routine.id equipment.id %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit" class="btn teal lighten-2">Remove</button>
+                            <button type="submit" class="btn blue darken-1">Remove</button>
                         </form>
                     </div>
                 </div>
@@ -45,21 +44,21 @@
         <form action="{% url 'add_exercise' routine.id %}" method="POST">
             {% csrf_token %}
             {{ exercise_form.as_p }}
-            <input type="submit" class="btn teal lighten-2" value="Add Exercise">
+            <input type="submit" class="btn blue darken-1" value="Add Exercise">
         </form>
     </div>
     <div class="col s6">
         <h4 style="text-align:center">Available Equipment</h4>
         {% if equipments.count %}
             {% for equipment in equipments.all %}
-                <div class="card red accent-1">
+                <div class="card pink accent-1">
                     <div class="card-content">
                         <span class="card-title">{{ equipment.name }}</span>
                     </div>
                     <div class="card-action">
                         <form action="{% url 'assoc_equipment' routine.id equipment.id %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="btn">Add</button>
+                        <button type="submit" class="btn blue darken-1">Add</button>
                         </form>
                     </div>
                 </div>

@@ -1,8 +1,44 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1>About FitHub</h1>
+<h1 style="font-weight:bold">About FitHub</h1>
 <hr>
-<p>Get started with FitHub today!</p>
+
+<div class="row yellow darken-3 white-text center-align" style="height:350px; padding:10px; margin:20px;">
+    <div class="col s12">
+        <h2 style="font-weight:bold">
+            FitHub was created ...
+        </h2>
+    </div>
+</div>
+
+<div class="row blue darken-1 white-text center-align" style="height:350px; padding:10px; margin:20px;">
+    <div class="col s12">
+        <h2 style="font-weight:bold">
+            Create your custom fitness schedule:<br>
+        </h2>
+        <h5>
+            1. Pick a day of the week.<br>
+            2. Select your focus area.<br>
+            3. Jot down your goals!<br>
+        </h5>
+        <br>
+        <a href="{% url 'routines_create' %}" class="btn yellow darken-3">Add a Routine</a>
+    </div>
+</div>
+
+<div class="row pink accent-1 white-text center-align" style="height:350px; padding:50px; margin:20px">
+    <div class="col s12">
+        <h2 style="font-weight:bold">
+            Access an overview of your customized routines:<br>
+        </h2>
+        <br>
+        <a href="{% url 'index' %}" class="btn yellow darken-3">View All My Routines</a>
+    </div>    
+</div>
+<div class="row">
+    <img class="responsive-img" style="width:275px; display:block; margin:auto;" src="../static/images/fithub.png">
+</div>
+
 
 {% endblock %}

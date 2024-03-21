@@ -26,10 +26,10 @@
                 <img style="height:64px;" src="../static/images/fithub.png">
             </a>
             <ul class="right hide-on-med-and-down">
-                <li><a href="{% url 'about' %}" class="btn teal darken-1">About</a></li>
+                <li><a href="{% url 'about' %}" class="btn blue darken-1">About</a></li>
                 {% if user.is_authenticated %}
                     <li>
-                        <a class="dropdown-trigger btn red accent-1" data-target="dropdown1">Equipment<i class="material-icons right">arrow_drop_down</i></a>
+                        <a class="dropdown-trigger btn pink accent-2" data-target="dropdown1">Equipment<i class="material-icons right">arrow_drop_down</i></a>
                         <ul id="dropdown1" class="dropdown-content">
                             <li><a href="{% url 'equipments_create' %}">Add Equipment</a></li>
                             <li><a href="{% url 'equipments_index' %}">View All Equipment</a></li>
@@ -42,10 +42,10 @@
                             <li><a href="{% url 'index' %}">View All My Routines</a></li>
                         </ul>
                     </li>
-                    <li><a href="{% url 'logout' %}">Log Out</a></li>
+                    <li><a class="btn orange accent-4" href="{% url 'logout' %}">Log Out</a></li>
                 {% else %}
-                    <li><a href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a href="{% url 'login' %}">Log In</a></li>
+                    <li><a class="btn pink accent-2" href="{% url 'signup' %}">Sign Up</a></li>
+                    <li><a class="btn yellow darken-3" href="{% url 'login' %}">Log In</a></li>
                 {% endif %}      
             </ul>
         </div>

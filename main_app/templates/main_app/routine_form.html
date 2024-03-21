@@ -4,7 +4,7 @@
 {% if object %}
     <h1>Edit <span class ="teal-text">{{object.day_of_the_week}}</span></h1>
 {% else %}    
-    <h1>Add Routine</h1>
+    <h1 style="font-weight:bold">Add Routine</h1>
 {% endif %}    
 
 <form action="" method="POST">
@@ -12,7 +12,7 @@
     <table>
         {{ form.as_table }}
     </table>
-    <input type="submit" value="Submit!" class="btn">
+    <input type="submit" value="Submit!" class="btn blue darken-1">
 </form>
 
 <script>
