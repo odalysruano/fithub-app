@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 <h1 style="font-weight:bold">About FitHub</h1>
@@ -37,7 +38,7 @@
     </div>    
 </div>
 <div class="row">
-    <img class="responsive-img" style="width:275px; display:block; margin:auto;" src="../static/images/fithub.png">
+    <img class="responsive-img" style="width:275px; display:block; margin:auto;" src="{% static 'images/fithub.png' %}">
 </div>
 
 

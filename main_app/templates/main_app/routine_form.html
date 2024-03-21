@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block content %}
 
 {% if object %}
@@ -16,7 +17,7 @@
 </form>
 
 <div class="center">
-    <img src="../static/images/goals.png">
+    <img src="{% static 'images/goals.png' %}">
 </div>
 
 <script>
