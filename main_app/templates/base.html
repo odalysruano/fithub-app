@@ -12,6 +12,7 @@
     <script type=text/javascript>
         $( document ).ready(function(){
             $(".dropdown-trigger").dropdown();
+            $('.sidenav').sidenav();
         });
     </script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -19,44 +20,68 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    <header class="navbar-fixed">
-        <nav>
-        <div class="nav-wrapper orange accent-4">
-            {% if user.is_authenticated %}
-                <ul>
-                    <li>
-                        <a class="btn orange accent-4" href="{% url 'index' %}">Welcome back, {{ user.username }}!</a>
-                    </li>
-                </ul>
-            {% endif %}     
-            <a href="/" class="brand-logo center">
-                <img style="height:64px;" src="{% static 'images/fithub.png' %}">
-            </a>
-            <ul class="right hide-on-med-and-down">
-                <li><a href="{% url 'about' %}" class="btn blue darken-1">About</a></li>
+    <header>
+        <nav class="navbar-fixed">
+            <div class="nav-wrapper orange accent-4">
                 {% if user.is_authenticated %}
-                    <li>
-                        <a class="dropdown-trigger btn pink accent-2" data-target="dropdown1">Equipment<i class="material-icons right">arrow_drop_down</i></a>
-                        <ul id="dropdown1" class="dropdown-content">
-                            <li><a href="{% url 'equipments_create' %}">Add Equipment</a></li>
-                            <li><a href="{% url 'equipments_index' %}">View All Equipment</a></li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a class="dropdown-trigger btn yellow darken-3" data-target="dropdown2">Routines<i class="material-icons right">arrow_drop_down</i></a>
-                        <ul id="dropdown2" class="dropdown-content">
-                            <li><a href="{% url 'routines_create' %}">Add a Routine</a></li>
-                            <li><a href="{% url 'index' %}">View All My Routines</a></li>
-                        </ul>
-                    </li>
-                    <li><a class="btn orange accent-4" href="{% url 'logout' %}">Log Out</a></li>
-                {% else %}
-                    <li><a class="btn pink accent-2" href="{% url 'signup' %}">Sign Up</a></li>
-                    <li><a class="btn yellow darken-3" href="{% url 'login' %}">Log In</a></li>
-                {% endif %}      
-            </ul>
-        </div>
+                    <ul>
+                        <li>
+                            <a class="btn orange accent-4 hide-on-med-and-down" href="{% url 'index' %}">Welcome back, {{ user.username }}!</a>
+                        </li>
+                    </ul>
+                {% endif %}     
+                <a href="/" class="brand-logo center">
+                    <img style="height:64px;" src="{% static 'images/fithub.png' %}">
+                </a>
+                <a href="#" data-target="mobile-navbar" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="{% url 'about' %}" class="btn blue darken-1">About</a></li>
+                    {% if user.is_authenticated %}
+                        <li>
+                            <a class="dropdown-trigger btn pink accent-2" data-target="dropdown1">Equipment<i class="material-icons right">arrow_drop_down</i></a>
+                            <ul id="dropdown1" class="dropdown-content">
+                                <li><a href="{% url 'equipments_create' %}">Add Equipment</a></li>
+                                <li><a href="{% url 'equipments_index' %}">View All Equipment</a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a class="dropdown-trigger btn yellow darken-3" data-target="dropdown2">Routines<i class="material-icons right">arrow_drop_down</i></a>
+                            <ul id="dropdown2" class="dropdown-content">
+                                <li><a href="{% url 'routines_create' %}">Add a Routine</a></li>
+                                <li><a href="{% url 'index' %}">View All My Routines</a></li>
+                            </ul>
+                        </li>
+                        <li><a class="btn orange accent-4" href="{% url 'logout' %}">Log Out</a></li>
+                    {% else %}
+                        <li><a class="btn pink accent-2" href="{% url 'signup' %}">Sign Up</a></li>
+                        <li><a class="btn yellow darken-3" href="{% url 'login' %}">Log In</a></li>
+                    {% endif %}      
+                </ul>
+            </div>
         </nav>
+        <ul class="sidenav" id="mobile-navbar">
+            <li><a href="{% url 'about' %}" class="btn blue darken-1">About</a></li>
+            {% if user.is_authenticated %}
+                <li>
+                    <a class="dropdown-trigger btn pink accent-2" data-target="dropdown1-mobile">Equipment<i class="material-icons right">arrow_drop_down</i></a>
+                    <ul id="dropdown1-mobile" class="dropdown-content">
+                        <li><a href="{% url 'equipments_create' %}">Add Equipment</a></li>
+                        <li><a href="{% url 'equipments_index' %}">View All Equipment</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a class="dropdown-trigger btn yellow darken-3" data-target="dropdown2-mobile">Routines<i class="material-icons right">arrow_drop_down</i></a>
+                    <ul id="dropdown2-mobile" class="dropdown-content">
+                        <li><a href="{% url 'routines_create' %}">Add a Routine</a></li>
+                        <li><a href="{% url 'index' %}">View All My Routines</a></li>
+                    </ul>
+                </li>
+                <li><a class="btn orange accent-4" href="{% url 'logout' %}">Log Out</a></li>
+            {% else %}
+                <li><a class="btn pink accent-2" href="{% url 'signup' %}">Sign Up</a></li>
+                <li><a class="btn yellow darken-3" href="{% url 'login' %}">Log In</a></li>
+            {% endif %}      
+        </ul>
     </header>
     <main class="container">
         {% block content %}

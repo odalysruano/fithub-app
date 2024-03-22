@@ -1,37 +1,53 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<div class="row yellow darken-3 white-text center-align" style="height:350px; padding:10px; margin:20px;">
+<div class="row">
     <div class="col s12">
-        <h1 style="font-weight:bold">
-            Get started today.<br>
-            Track your progress.<br>
-            Stay fit.
-        </h1>
-        <a href="{% url 'signup' %}" class="btn blue darken-1">Sign up for FitHub</a>
+        <div class="card yellow darken-3" style="margin-top:30px">
+            <div class="card-content white-text center-align">
+                <h1 style="font-weight:bold">
+                    Get started today.<br>
+                    Track your progress.<br>
+                    Stay fit.
+                </h1>
+                <a href="{% url 'signup' %}" class="btn blue darken-1">Sign up for FitHub</a>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="row valign-wrapper">
     <div class="col s6">
-        <img class="responsive-img" src="https://img.freepik.com/free-vector/illustration-training-home-concept_23-2148484371.jpg?size=626&ext=jpg&ga=GA1.2.1911126188.1711027605&semt=ais">
+        <div class="card">
+            <div class="card-content">
+                <img class="responsive-img" src="https://img.freepik.com/free-vector/illustration-training-home-concept_23-2148484371.jpg?size=626&ext=jpg&ga=GA1.2.1911126188.1711027605&semt=ais">
+            </div>
+        </div>
     </div>
-    <div class="col s6 blue darken-1 white-text center-align" style="height:450px; padding:25px; margin:20px;">
-        <h4 style="font-weight:bold">
-            Your ultimate fitness ally, crafted to effortlessly monitor your fitness ambitions, workout plans, and home gear collection. Elevate your fitness voyage with our sleek platform, uniting all your fitness must-haves under one roof.
-        </h4>
+    <div class="col s6">
+        <div class="card blue darken-1">
+            <div class="card-content white-text center-align">
+                <h4 style="font-weight:bold">
+                    Your ultimate fitness ally, crafted to effortlessly monitor your fitness ambitions, workout plans, and home gear collection. Elevate your fitness voyage with our sleek platform, uniting all your fitness must-haves under one roof.
+                </h4>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="row pink accent-1 center-align" style="height:350px; padding:50px; margin:20px">
+<div class="row">
     <div class="col s12">
-        <h5 style="font-weight:bold">
-            Create your weekly fitness routine.<br>
-            Log your personal goals.<br>
-            Keep track of your exercise progress.
-        </h5>
-        <br>
-        <i class="large material-icons white-text">create timeline event_available fitness_center</i>
+        <div class="card pink accent-1">
+            <div class="card-content center-align">
+                <h5 style="font-weight:bold">
+                    Create your weekly fitness routine.<br>
+                    Log your personal goals.<br>
+                    Keep track of your exercise progress.
+                </h5>
+                <br>
+                <i class="large material-icons white-text">create timeline event_available fitness_center</i>
+            </div>
+        </div>
     </div>
 </div>
 <div class="row">
