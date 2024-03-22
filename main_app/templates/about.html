@@ -5,41 +5,53 @@
 <h1 style="font-weight:bold">About FitHub</h1>
 <hr>
 
-<div class="row yellow darken-3 white-text center-align" style="height:350px; padding:40px; margin:20px;">
+<div class="row">
     <div class="col s12">
-        <h4 style="font-weight:bold">
-            FitHub is your personal fitness companion, designed to help you seamlessly track your fitness goals, exercise routines, and home equipment inventory. Empower your fitness journey with our intuitive platform, keeping all your fitness essentials in one place.
-        </h4>
+        <div class="card yellow darken-3">
+            <div class="card-content white-text center-align">
+                <h4 style="font-weight:bold">
+                    FitHub is your personal fitness companion, designed to help you seamlessly track your fitness goals, exercise routines, and home equipment inventory. Empower your fitness journey with our intuitive platform, keeping all your fitness essentials in one place.
+                </h4>
+            </div>
+        </div>
     </div>
 </div>
 
-<div class="row blue darken-1 white-text center-align" style="height:350px; padding:10px; margin:20px;">
+<div class="row">
     <div class="col s12">
-        <h2 style="font-weight:bold">
-            Create your custom fitness schedule:<br>
-        </h2>
-        <h5>
-            1. Pick a day of the week.<br>
-            2. Select your focus area.<br>
-            3. Jot down your goals!<br>
-        </h5>
-        <br>
-        <a href="{% url 'routines_create' %}" class="btn yellow darken-3">Add a Routine</a>
-    </div>
-</div>
-
-<div class="row pink accent-1 white-text center-align" style="height:350px; padding:50px; margin:20px">
-    <div class="col s12">
-        <h2 style="font-weight:bold">
-            Access an overview of your customized routines:<br>
-        </h2>
-        <br>
-        <a href="{% url 'index' %}" class="btn yellow darken-3">View All My Routines</a>
+        <div class="card blue darken-1">
+            <div class="card-content white-text center-align">
+                <h2 style="font-weight:bold">
+                    Create your custom fitness schedule:<br>
+                </h2>
+                <h5>
+                    1. Pick a day of the week.<br>
+                    2. Select your focus area.<br>
+                    3. Jot down your goals!<br>
+                </h5>
+                <br>
+                <a href="{% url 'routines_create' %}" class="btn yellow darken-3">Add a Routine</a>
+            </div>
+        </div>
     </div>    
 </div>
+
+<div class="row">
+    <div class="col s12">
+        <div class="card pink accent-1">
+            <div class="card-content white-text center-align">
+                <h2 style="font-weight:bold">
+                    Access an overview of your customized routines:<br>
+                </h2>
+                <br>
+                <a href="{% url 'index' %}" class="btn yellow darken-3">View All My Routines</a>
+            </div>
+        </div>
+    </div>    
+</div>
+
 <div class="row">
     <img class="responsive-img" style="width:275px; display:block; margin:auto;" src="{% static 'images/fithub.png' %}">
 </div>
-
 
 {% endblock %}
