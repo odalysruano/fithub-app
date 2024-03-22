@@ -48,7 +48,7 @@ class RoutineCreate(LoginRequiredMixin, CreateView):
 
 class RoutineUpdate(LoginRequiredMixin, UpdateView):
     model = Routine
-    fields = ['focus_area', 'time_goal', 'calorie_goal']
+    fields = ['day_of_the_week', 'focus_area', 'time_goal', 'calorie_goal']
 
 class RoutineDelete(LoginRequiredMixin, DeleteView):
     model = Routine
