@@ -1,7 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h1 style="font-weight:bold">My Equipment List</h1>
+<div class="row valign-wrapper">
+    <div class="col s8">
+        <h1 style="font-weight:bold">My Equipment List</h1>
+    </div>
+    <div class="col s4">
+        <a href="{% url 'equipments_create' %}" class="btn pink accent-2 right">Add Equipment</a>
+    </div>
+</div>
 
 {% for equipment in equipment_list %}
     <a href="{% url 'equipments_detail' equipment.id %}">
