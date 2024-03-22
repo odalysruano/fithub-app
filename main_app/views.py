@@ -28,7 +28,7 @@ def routines_index(request):
 def routines_detail(request, routine_id):
     routine = Routine.objects.get(id=routine_id)
     id_list = routine.equipments.all().values_list('id')
-    equipments_routine_doesnt_have = Equipment.objects.exclude(id__in=id_list)
+    equipments_routine_doesnt_have = Equipment.objects.exclude(id__in=id_list).filter(user=request.user)
     exercise_form = ExerciseForm(focus_area=routine.focus_area)
     return render(request, 'routines/detail.html', { 
         'routine': routine,
@@ -71,13 +71,19 @@ def delete_exercise(request, routine_id, exercise_id):
 
 class EquipmentList(LoginRequiredMixin, ListView):
     model = Equipment
+    def get_queryset(self):
+        return Equipment.objects.filter(user=self.request.user)
 
 class EquipmentDetail(LoginRequiredMixin, DetailView):
     model = Equipment
 
 class EquipmentCreate(LoginRequiredMixin, CreateView):
     model = Equipment
-    fields = '__all__'
+    fields = ['name', 'weight']
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
 
 class EquipmentUpdate(LoginRequiredMixin, UpdateView):
     model = Equipment
