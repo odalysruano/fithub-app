@@ -1,4 +1,5 @@
 # FitHub
+Link to App: http://fithub-app.us-east-1.elasticbeanstalk.com/
 
 ## App Description
 FitHub is your personal fitness companion, designed to help you seamlessly track your fitness goals, exercise routines, and home equipment inventory. Empower your fitness journey with our intuitive platform, keeping all your fitness essentials in one place.
@@ -39,9 +40,13 @@ Mobile - Nav:
 - Materialize
 - PostgreSQL
 - Django
+- AWS CodeBuild
+- AWS CodePipeline
+- AWS EC2
+- AWS Elastic Beanstalk
 
 ## Getting Started
-Link to App: 
+Link to App: http://fithub-app.us-east-1.elasticbeanstalk.com/
 
 Trello Board: https://trello.com/b/xALkeXvo/fithub-project-3
 
