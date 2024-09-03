@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+{% load static %}
 
 <div class="row valign-wrapper">
     <div class="col s8">
@@ -21,7 +22,7 @@
 {% endfor %}
 
 <div class="center">
-    <img class="responsive-img" src="../static/images/equipment.png">
+    <img class="responsive-img" src="{% static 'images/equipment.png' %}">
 </div>
 
 {% endblock %}
