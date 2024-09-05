@@ -1,5 +1,5 @@
 # FitHub
-Link to App: http://fithub-app.us-east-1.elasticbeanstalk.com/
+Link to App: http://fithub.us-east-1.elasticbeanstalk.com/
 
 ## App Description
 FitHub is your personal fitness companion, designed to help you seamlessly track your fitness goals, exercise routines, and home equipment inventory. Empower your fitness journey with our intuitive platform, keeping all your fitness essentials in one place.
